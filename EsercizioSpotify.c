@@ -2,32 +2,32 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define max 100
-#define wrd 5
+#define MAX 5000
+#define WRD 10
 
 int main(){
     char canzone;
     int num, aut, tit;
     int i=0, j=0, k=0, h=0, l=0, o=0;
     int canzpr, canznum, canzatt; //canzone precedente , numero canzone, canzone attuale
-    int *indice;
-    int *titolo;
-    int *autore;
-    int ita[max][wrd]; //i=indice, t= titolo, a=autore per abbrevviare
+    char indice[MAX];
+    char titolo[MAX];
+    char autore[MAX];
+    char stringa[MAX];
+    int ita[MAX][WRD]; //i=indice, t= titolo, a=autore per abbrevviare
     int pos=0;
-    indice=(int *) malloc(sizeof(int));
-    titolo=(int *) malloc(sizeof(int));
-    autore=(int *) malloc(sizeof(int));
-    char stringa[max];
     FILE *fp;
-    fp = fopen ("playlist.csv", "r");
+     fp = fopen ("playlist.csv", "r");
     if (fp != NULL){
-        while (!feof(fp)){
-             fgets(stringa, max, fp);
+          while (fgets(stringa, MAX, fp)){
+            printf("%s", stringa);
+             i=0;
                while (stringa[i] != ','){   
                 if (i==0){
-                    indice[l]=stringa[i];
-                }
+                    indice[l]=stringa[i]; }
+                i++;
+               }
+               i++;
             int offsettitolo=0;
             tit=k;
         while (stringa[i] != ','){
@@ -41,12 +41,14 @@ int main(){
                 autore[j] = stringa[i];
                 i++;j++;
                 offsetautore++;}
-
-            ita[h][0]=indice[l];      
-            ita[h][1]=titolo[tit];
-            ita[h][2]=(char)offsettitolo;
-            ita[h][3]=autore[aut];
-            ita[h][4]=(char)offsetautore;}
+        ita[h][0]=indice[l];      
+        ita[h][1]=titolo[tit];
+        ita[h][2]=(char)offsettitolo;
+        ita[h][3]=autore[aut];
+        ita[h][4]=(char)offsetautore;
+        l++;
+        h++;
+        }
 
               do{
                 canzatt= rand() % canznum;}                                     
@@ -60,8 +62,10 @@ int main(){
                 for (int e=0; e<ita[canzatt][4]; e++){
                 num = ita[canzatt][3];
                 printf("%c", titolo[num+e]);}
-                }}
+                }
                 else{
-    printf("Errore nella lettura");}
+    printf("Errore nella lettura");
+       fclose(fp);}
+ 
     return 0;
 }
