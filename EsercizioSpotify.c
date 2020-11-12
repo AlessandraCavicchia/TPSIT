@@ -10,12 +10,15 @@ int main(){
     int num, aut, tit;
     int i=0, j=0, k=0, h=0, l=0, o=0;
     int canzpr, canznum, canzatt; //canzone precedente , numero canzone, canzone attuale
-    char indice[max];
-    char titolo[max];
-    char autore[max];
-    char stringa[max];
+    int *indice;
+    int *titolo;
+    int *autore;
     int ita[max][wrd]; //i=indice, t= titolo, a=autore per abbrevviare
     int pos=0;
+    indice=(int *) malloc(sizeof(int));
+    titolo=(int *) malloc(sizeof(int));
+    autore=(int *) malloc(sizeof(int));
+    char stringa[max];
     FILE *fp;
     fp = fopen ("playlist.csv", "r");
     if (fp != NULL){
